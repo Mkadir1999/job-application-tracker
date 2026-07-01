@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Job Tracker</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <h1 class="header__title">IT Job Tracker</h1>
+      <div class="header__actions">
+        <button type="button" id="btn-export" class="btn btn--secondary">Export JSON</button>
+        <label class="btn btn--secondary btn--file">
+          Import JSON
+          <input type="file" id="import-file" accept=".json,application/json" hidden>
+        </label>
+        <button type="button" id="btn-add" class="btn btn--primary">Add Application</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="summary" id="status-summary" aria-label="Application status summary"></section>
+
+  <main class="main">
+    <aside class="list-panel" id="list-panel">
+      <div class="list-panel__header">
+        <h2>Applications</h2>
+        <span class="list-panel__count" id="list-count"></span>
+      </div>
+      <div class="list" id="application-list"></div>
+    </aside>
+
+    <section class="detail-panel" id="detail-panel" aria-label="Application details">
+      <div class="detail-panel__empty" id="detail-empty">
+        <p>Select an application or add a new one to get started.</p>
+        <button type="button" id="btn-add-empty" class="btn btn--primary">Add Application</button>
+      </div>
+
+      <form class="detail-form hidden" id="detail-form" novalidate>
+        <div class="detail-form__header">
+          <h2 id="form-title">New Application</h2>
+          <button type="button" id="btn-close-detail" class="btn btn--icon btn--secondary" aria-label="Close detail panel">&times;</button>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="job-title">Job Title <span class="required">*</span></label>
+            <input type="text" id="job-title" required placeholder="e.g. IT Support Specialist">
+          </div>
+          <div class="form-field">
+            <label for="company">Company <span class="required">*</span></label>
+            <input type="text" id="company" required placeholder="e.g. Acme Corp">
+          </div>
+          <div class="form-field">
+            <label for="location">Location</label>
+            <input type="text" id="location" placeholder="e.g. Remote, New York NY">
+          </div>
+          <div class="form-field">
+            <label for="salary">Salary</label>
+            <input type="text" id="salary" placeholder="e.g. $55,000 - $65,000">
+          </div>
+          <div class="form-field form-field--full">
+            <label for="job-link">Job Link</label>
+            <input type="url" id="job-link" placeholder="https://">
+          </div>
+          <div class="form-field">
+            <label for="date-applied">Date Applied</label>
+            <input type="date" id="date-applied">
+          </div>
+          <div class="form-field">
+            <label for="status">Status</label>
+            <select id="status">
+              <option value="Saved">Saved</option>
+              <option value="Applied">Applied</option>
+              <option value="Interview">Interview</option>
+              <option value="Rejected">Rejected</option>
+              <option value="Offer">Offer</option>
+            </select>
+          </div>
+          <div class="form-field form-field--full">
+            <label for="notes">Notes</label>
+            <textarea id="notes" rows="4" placeholder="Follow-up dates, recruiter name, etc."></textarea>
+          </div>
+        </div>
+
+        <section class="form-section">
+          <div class="form-section__header">
+            <h3>Interview Questions &amp; Answers</h3>
+            <button type="button" id="btn-add-qa" class="btn btn--secondary btn--small">Add Q&amp;A</button>
+          </div>
+          <div id="interview-qa-list" class="qa-list"></div>
+        </section>
+
+        <section class="form-section">
+          <div class="form-section__header">
+            <h3>Resume Keywords</h3>
+          </div>
+          <div class="keyword-input">
+            <input type="text" id="keyword-input" placeholder="Type a keyword and press Enter">
+            <button type="button" id="btn-add-keyword" class="btn btn--secondary btn--small">Add</button>
+          </div>
+          <div id="keyword-tags" class="keyword-tags"></div>
+        </section>
+
+        <div class="form-actions">
+          <button type="button" id="btn-delete" class="btn btn--danger hidden">Delete</button>
+          <div class="form-actions__right">
+            <button type="button" id="btn-cancel" class="btn btn--secondary">Cancel</button>
+            <button type="submit" class="btn btn--primary">Save</button>
+          </div>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
